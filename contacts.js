@@ -5,17 +5,11 @@ const id = require("bson-objectid");
 //   Раскомментируй и запиши значение
 const contactsPath = path.join(__dirname, "db/contacts.json");
 
-// // TODO: задокументировать каждую функцию
-// function listContacts() {
-//   // ...твой код
-// }
 async function listContacts() {
   const result = await fs.readFile(contactsPath);
   return JSON.parse(result);
 }
-// function getContactById(contactId) {
-//   // ...твой код
-// }
+
 async function getContactById(contactId) {
   const allContacts = await listContacts();
   const result = await allContacts.find(
@@ -27,9 +21,6 @@ async function getContactById(contactId) {
   return result;
 }
 
-// function removeContact(contactId) {
-//   // ...твой код
-// }
 async function removeContact(contactId) {
   const allContacts = await listContacts();
   const idx = allContacts.findIndex(
@@ -41,9 +32,7 @@ async function removeContact(contactId) {
   const [result] = allContacts.splice(idx, 1);
   return result;
 }
-// function addContact(name, email, phone) {
-//   // ...твой код
-// }
+
 async function addContact(name, email, phone) {
   const allContacts = await listContacts();
   const newContact = {
@@ -55,6 +44,7 @@ async function addContact(name, email, phone) {
   await fs.writeFile(contactsPath, JSON.stringify(allContacts, null, 2));
   return newContact;
 }
+
 module.exports = {
   listContacts,
   getContactById,
